@@ -1,0 +1,70 @@
+	
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin management</title>
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+	<link rel="stylesheet" href="../css/admin_style.css" /> 
+	<style type="text/css">
+	@media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+}
+	</style>
+</head>
+<body>
+ <div class="container">
+       <% include ./layout/header.ejs %>
+      <div class="row">
+        <div class="col-lg-12">
+         <table class="table table-bordered">
+		    <th>STT</th>
+		    <th>Image</th>
+		    <th>Title</th>
+		    <th class="span">Description</th>
+		    <th>Delete</th>
+		    <th>Update</th>
+		    <% var size = images.length;
+		     for(var i = 0; i < size; ++i){%>
+		     <tr class="success">
+		         <td class="col-xs-1"><%=i+1%></td>
+		         <td class="col-xs-3"><img src="../<%=images[i].imagePath %>" class="img-responsive img-thumbnail" width="200px" height="150px"/></td>
+		          <td class="col-xs-2"><%=images[i].title %></td>
+		         <td class="col-xs-4"><%=images[i].describe %></td>
+		         <td class="col-xs-1"><button class="btn btn-danger" value='<%=images[i]._id%>'>Delete</button></td>
+		         <td class="col-xs-1"><button class="btn btn-primary" onclick=" window.location.href = 'http://localhost:3000/admin/updateimg/?id=<%=images[i]._id%>'">Update</button></td>
+
+		     </tr>
+		     <%}%>
+    	</table>
+        </div>
+      </div>
+       <% include ./layout/footer.ejs %>
+  </div>
+  <script src="../js/jquery.min.js"></script>
+
+  <script>
+	$(document).ready(function(){
+	   $(".btn-danger").click(function(e) {
+	    if (confirm("Bạn thực sự muốn xóa?")){
+	    e.preventDefault();
+	    var delete_image = $(this).val();
+
+	    $.ajax({    
+	    type    : 'DELETE',
+	    url     : '/admin/delimage',
+	    data: {imagetodelete:  delete_image},
+	    success : function(response) {
+	       alert(response.notify);
+	       location.reload();
+	    }
+	    });
+	    }
+	});
+});
+   var d = document.getElementById("management");
+	d.className += "active"; 
+</script>
+</body>
+ 

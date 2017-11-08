@@ -1,0 +1,92 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+	<link rel="stylesheet" href="../css/admin_style.css" /> 
+  <style>
+    @media (min-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+  </style>
+</head>
+<body>
+ <div class="container">
+       <% include ./layout/header.ejs %>
+      <div class="row">
+        <div class="col-lg-12">
+        <table class="table table-bordered">
+            <th>STT</th>
+            <th>imagecensors</th>
+            <th>Title</th>
+            <th class="span">Description</th>
+            <th>Detail</th>
+            <th>Sensor</th>
+             <th>Reject</th>
+            <% var size = imagecensors.length;
+             for(var i = 0; i < size; ++i){%>
+             <tr class="success">
+                 <td class="col-xs-1"><%=i+1%></td>
+                 <td class="col-xs-3"><img src="../<%=imagecensors[i].imagecensorPath %>" class="img-responsive img-thumbnail" width="200px" height="150px"/></td>
+                  <td class="col-xs-2"><%=imagecensors[i].title %></td>
+                 <td class="col-xs-3"><%=imagecensors[i].describe %></td>
+                 <td class="col-xs-1"><button class="btn btn-primary" onclick="window.location.href='/admin/censordetail/?id=<%=imagecensors[i]._id%>'" >Detail</button></td>
+                 <td class="col-xs-1"><button class="btn btn-success"  value='<%=imagecensors[i]._id%>' ">Sensor</button></td>
+                  <td class="col-xs-1"><button class="btn btn-danger" value='<%=imagecensors[i]._id%>' ">Reject</button></td>
+
+             </tr>
+             <%}%>
+      </table>
+        </div>
+      </div>
+       <% include ./layout/footer.ejs %>
+  </div>
+  <script src="../js/jquery.min.js"></script>
+  <script type="text/javascript">
+    var d = document.getElementById("sensor");
+    d.className += "active"; 
+  </script>
+
+  <script>
+  $(document).ready(function(){
+     $(".btn-success").click(function(e) {
+      if (confirm("Chấp nhận upload lên trang chủ?")){
+      e.preventDefault();
+      var censor_image = $(this).val();
+
+      $.ajax({    
+      type    : 'POST',
+      url     : '/admin/censored',
+      data: {imagetocensor:  censor_image},
+      success : function(response) {
+         alert(response.message);
+         location.reload();
+      }
+      });
+      }
+  });
+});
+</script>
+
+  <script>
+  $(document).ready(function(){
+     $(".btn-danger").click(function(e) {
+      if (confirm("Bạn thực sự muốn xóa?")){
+      e.preventDefault();
+      var delete_image = $(this).val();
+      $.ajax({    
+      type    : 'DELETE',
+      url     : '/admin/delsensorimage',
+      data: {imagetodelete:  delete_image},
+      success : function(response) {
+         alert(response.message);
+         location.reload();
+      }
+      });
+      }
+  });
+});
+</script>
+</body>
+ 

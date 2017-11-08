@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gallery Picture App</title>
+    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/animate.min.css" />
+    <link rel="stylesheet" href="../css/ionicons.min.css" />
+    <link rel="stylesheet" href="../css/styles.css" /> 
+    <style type="text/css">
+      .navbar{
+            background-image: url("../images/1.png");
+        }
+        .container{
+            margin-top: 10%;
+            font-size: 120%;
+        }
+
+    </style>
+  </head>
+<body>
+  <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Dấu Ấn UET</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-right  ">
+                    <li role="presentation">
+                        <a  title="Trang chủ" href="/">Trang chủ</a>
+                    </li>
+                    <li role="presentation" class="active">
+                        <a  title="Trang cá nhân" href="#">Trang cá nhân</a>
+                    </li>
+                    <li role="presentation">
+                        <a   title="Đăng xuất" href="/user/logout">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="clear:both;"></div>
+
+<div class="container">
+
+<div class="col-md-4 col-md-offset-4">
+    <h1>Upload ảnh lên trang chủ.</h1>
+   
+    <% if(hasError){ %>
+    <div><p class="alert alert-success">Upload ảnh thành công!</p></div>
+    <% }%>
+  
+    <form action="/user/upload" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label>Tiêu đề:</label>
+            <input type="text" class="form-control" name="title" required>
+        </div>
+        <div class="form-group">
+            <label>Hình ảnh chọn từ file của bạn.</label>   
+            <input type="file"  name="file" required>       
+        </div>
+        <div class="form-group">
+            <label>Mô tả:</label>
+            <textarea name="description" class="form-control" required></textarea>
+        </div>
+          <div class="form-group">
+            <input type="hidden" name="userupload" value="<%=user.username%>" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success pull-right">Upload</button>
+    </form>
+</div>
+</div>
+
+</body>

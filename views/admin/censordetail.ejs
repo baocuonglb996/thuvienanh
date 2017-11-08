@@ -1,0 +1,40 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../../css/bootstrap.css" />
+  <link rel="stylesheet" href="../../css/admin_style.css" /> 
+  <script src="../../js/jquery.min.js"></script>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+ <div class="container">
+       <% include ./layout/header.ejs %>
+      <div class="row">
+        <div class="col-lg-12">
+            <form  class="col-xs-12" ><!-- action="/api/updateproduct" -->
+               <div class="img-responsive">
+               <label for="description">Image:</label>
+                <img  name="imagepath" class="img-thumbnail img-responsive" src="<%=censor_image.imagecensorPath %>" />
+              </div>
+              <div class="form-group">
+               <label for="title">Title:</label>
+               <textarea type="text" readonly="readonly" rows="2" class="form-control" id="title" placeholder="Enter title" name="title"> <%=censor_image.title %> </textarea>
+              </div>
+             <div class="form-group">
+                <label for="description">Description:</label>
+               <textarea type="text" readonly="readonly" class="form-control" id="description" placeholder="Enter description" name="description" rows="4"> <%=censor_image.describe%></textarea> 
+            </div>
+            <div class="form-group">
+               <label for="userupload">Userupload:</label>
+               <textarea type="text" readonly="readonly" rows="2" class="form-control" id="title" placeholder="Enter title" name="userupload"> <%=censor_image.userupload %> </textarea>
+            </div>
+          </form> 
+           <button class="btn btn-primary pull-right" style="margin-right: 15px;" onclick="window.location.href='/admin/censor'" >Back</button>
+        </div>
+      </div>
+       <% include ./layout/footer.ejs %>
+  </div>
+</body>
+ 

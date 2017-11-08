@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>  
+      <link rel="stylesheet" href="../css/userlogin.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  
+</head>
+<style type="text/css">
+  .message{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color:black;
+    background-color:#ff4d4d;
+    opacity: 0.7;
+    border-radius: 5px;
+  }
+</style>
+
+<body>
+ 
+<div class="wrapper animated bounce">
+  <h1>Dấu ấn UET</h1>
+  <hr>
+  <form  method="post" action="/user/login">
+    <div class="message">
+              <% if(hasError){ %>
+                  <div>
+                      <p><strong><%=message %></strong></p>
+                  </div>
+              <% } %>
+    </div>
+    <label id="icon" for="username"><i class="fa fa-user"></i></label>
+    <input type="text" placeholder="Username" name="username" required>
+    <label id="icon" for="password"><i class="fa fa-key"></i></label>
+    <input type="password" placeholder="Password" name="password" required>
+    <input type="submit" value="Login In">
+    <hr>
+    <div class="crtacc"><a href="/">Create Account</a></div>
+  </form>
+</div>
+ <script src="../js/jquery.min.js"></script>
+</body>
+</html>

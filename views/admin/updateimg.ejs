@@ -1,0 +1,58 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../../css/bootstrap.css" />
+  <link rel="stylesheet" href="../../css/admin_style.css" /> 
+  <script src="../../js/jquery.min.js"></script>
+  <style type="text/css">
+  </style>
+</head>
+<body>
+ <div class="container">
+       <% include ./layout/header.ejs %>
+      <div class="row">
+        <div class="col-lg-12">
+            <form  class="col-xs-12" method="post"><!-- action="/api/updateproduct" -->
+               <div class="img-responsive">
+               <label for="description">Image:</label>
+                <img  name="imagepath" class="img-thumbnail img-responsive" src="<%=update_image.imagePath %>" />
+              </div>
+              <div class="form-group">
+               <label for="title">Title:</label>
+               <textarea type="text"  rows="2" class="form-control" id="title" placeholder="Enter title" name="title"> <%=update_image.title %> </textarea>
+              </div>
+             <div class="form-group">
+                <label for="description">Description:</label>
+               <textarea type="text" class="form-control" id="description" placeholder="Enter description" name="description" rows="4"> <%=update_image.describe%></textarea> 
+            </div>
+            <button type="submit" class="btn btn-primary pull-right" value="<%= id_update %>">Save change</button>
+          </form>
+        </div>
+      </div>
+       <% include ./layout/footer.ejs %>
+  </div>
+  
+  <script>
+      $(document).ready(function(){
+       $(".btn-primary").click(function(e) {
+        e.preventDefault();
+        console.log("something run");
+        var Title = $("#title").val();
+        var idtoupdate = $(this).val();
+        var Description = $("#description").val();
+        console.log("img updating is:"+idtoupdate);
+        $.ajax({    
+        type    : 'PUT',
+        url     : '/admin/updateimg/'+idtoupdate,
+        data: {title: Title, description:Description},
+        success : function(response) {
+           alert(response.notify);
+           location.href = "../../admin/management";
+        }
+        });
+    });
+    });
+</script>
+</body>
+ 

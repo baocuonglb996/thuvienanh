@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gallery Picture App</title>
+    <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Codeply">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <style type="text/css">
+        *{
+          font-family: "Times New Roman", Times, serif;
+        }
+        .navbar{
+            background-image: url("./images/1.png");
+        }
+        #three{
+            margin-top: 5%;
+        }
+        .modal{
+             margin-top: 4%;
+        }
+        /* Add Animation */
+        .modal-content {    
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+        @-webkit-keyframes zoom {
+            from {-webkit-transform:scale(0)} 
+            to {-webkit-transform:scale(1)}
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        .container{
+            margin-top: 10%;
+        }
+        .center-register{
+            margin: auto;
+        }
+        button{
+            margin-right: 10px;
+        }
+        #myitem{
+          border:1px solid #ebebe0;
+          border-radius: 5px;
+          background-color: #ebebe0;
+          margin-top: 3px;
+        }
+        .item-comment{
+          
+        }
+        img{
+          margin-left: 0px;
+          border-radius: 5px;
+        }
+        #commentform{
+          margin-top: 10px;
+        }
+        .pagination {
+        display: inline-block;
+        margin: 0 auto;
+        margin-top: 5px;
+        margin-left:40%;
+        }
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+               
+                <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Dấu Ấn UET</a>
+            </div>
+            <div class="navbar-collapse collapse" id="bs-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                  <% if(userlogin){ %>
+                    <li role="presentation" class="active">
+                        <a  class="page-scroll"  title="Trang chủ" href="/">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a  class="page-scroll"  title="Trang cá nhân" href="/user/profile">Trang cá nhân</a>
+                    </li>
+                    <li>
+                        <a  class="page-scroll"  title="Đăng nhập tài khoản đăng nhập" href="/user/logout">Đăng xuất</a>
+                    </li>
+                  <% } else { %>
+                    <li>
+                        <a id="register" class="page-scroll" data-toggle="modal" title="Đăng ký tài khoản đăng nhập" href="#registerModal">Đăng ký</a>
+                    </li>
+                    <li>
+                        <a id="login" class="page-scroll"  title="Đăng nhập tài khoản đăng nhập" href="/user/login">Đăng nhập</a>
+                    </li>
+
+                  <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="three" class="no-padding">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+            <% var len = results.length%>
+            <% var sizeImages = Object.keys(images).length;
+        for(var i = 0; i < sizeImages; ++i){ %>   
+   		<div class="col-lg-3 col-sm-6">
+                    <a  class="gallery-box showimg myinput" id="<%=images[i]._id%>" data-toggle="modal" data-src="<%=images[i].imagePath %>">
+                    <% for(var j = 0; j < len; ++j){ %>
+                    <%if(results[j].id_img_hascmt == images[i]._id.toString()){%>
+                     <input type="hidden"  value="
+                    <% results[j].comments.forEach(function(key){%>
+                   <div id='myitem'><div class='col-xs-2'> <img src='./images/default_avatar.png' width='50' height='50'></img></div><div class='col-xs-10' style='color:#00cc00;font-size: 120%;'><div class=''><strong><a href='#'><%=key.username%>: </a></strong> <%=key.content%></div><p style='color:#000066;font-size: 75%;'>Đăng vào ngày <%=key.day_date%> lúc <%=key.hour_date%></p></div><div style='clear:both;'></div></div> 
+                    <%});%>
+                    ">
+                    
+                    <%break;%>
+                    <%}%>
+                    <%}%>
+
+                        <img src="<%=images[i].imagePath %>" id="<%=images[i]._id%>" class="img-responsive" alt="Image">
+                        <div class="gallery-box-caption">
+                            <div class="gallery-box-content">
+                                <div>
+                                    <i class="icon-lg ion-ios-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+         <%if ( (i+1) % 4 == 0 ){ %>
+         	 <div style="clear: both"></div>
+         <%} %>
+        <%}%>
+                
+
+            </div>
+        </div>
+          <div class="pagination">
+  <a href="#">&laquo;</a>
+  <a href="#" class="active">1</a>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#">6</a>
+  <a href="#">&raquo;</a>
+ </div>
+    </section>
+
+<!--     <%= results.length %> 
+    <div><%= userlogin %></div> -->
+    <footer id="footer">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-3 column">
+                    <h4>Stay Posted</h4>
+                    <form>
+                        <div class="form-group">
+                          <input type="text" class="form-control" title="No spam, we promise!" placeholder="Tell us your email">
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary" data-toggle="modal" data-target="#alertModal" type="button">Subscribe for updates</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+            
+        </div>
+    </footer>
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="row">
+          <div class="col-xs-9">
+            <img src="" id="galleryImage" class="img-responsive modal-content" />
+          </div>
+          <div class="col-xs-3">
+              <div id="mydiv"></div>
+              <form id="commentform" action="user/comment" method="post"> 
+               <input type="hidden" id="userid" value= "<%= userid%>" >
+                <table>
+                  <tr>
+                    <td width="225"><div  class="form-group">
+                <input name="comment" class="form-control" id ="commentimg" required type="text"  placeholder="Enter comment..." > 
+              </div></td>
+                    <td> <button style="margin-bottom: 12px;" type="submit" class="btn btn-primary pull-right">comment</button></td>
+                  <tr>
+                </table>
+               
+               
+                </form>
+            </div>
+            </div>
+            </div>
+        
+                
+                  <!--   <br/>
+                    <button class="btn btn-primary btn-lg pull-right" data-dismiss="modal" aria-hidden="true"><i class="ion-android-close"></i></button> -->     
+    </div>
+
+
+        <div id="registerModal" class="modal fade col-xs-6 center-register" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="text-center">Đăng ký tài khoản!</h2>
+                
+         <form  class="col-xs-12" method="post"><!-- action="/api/updateproduct" -->
+            <div class="form-group">
+            <p id="message"></p>
+            </div>
+            <div class="form-group">
+            <p id="login"></p>
+            </div>
+            <div class="form-group">
+               <label for="username">User Name:</label>
+                <input  type="text" class="form-control" placeholder="Enter User Name" name="username" id="username" required />
+             </div>
+               
+           
+            <div class="form-group">
+             <label for="password">Password:</label>
+               <input type="password"  class="form-control" id="password" placeholder="Enter password" name="password" required/>
+            </div>
+             <div class="form-group">
+                <label for="retypepassword">Retype Password:</label>
+               <input type="password" class="form-control" id="retypepassword" placeholder="Retype password" name="retypepassword" required /> 
+            </div>
+          </form>
+                
+                <br/>
+                <button class="btn btn-danger pull-right" data-dismiss="modal" aria-hidden="true"> Hủy Bỏ </button>
+                <br/>
+                <button class="btn btn-success pull-right">  Đăng ký </button>
+                <div style="clear: both"></div>
+
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        </div>
+    </div>
+    <div id="testappend">
+    </div>
+
+        <!--scripts loaded here -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/index.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var userlogin = <%= userlogin %>;
+        if(userlogin){
+          $(".showimg").attr("href", "#galleryModal");
+        }
+          
+      });
+    $(document).ready(function(){
+        var imgid;
+        $('.showimg').on("click", function () {
+                  imgid = $(this).attr('id');
+            });
+       
+        $("#commentform").submit(function(e) {
+    //var url = "path/to/your/script.php"; // the script where you handle the form input.
+          var userid = "<%= userid%>";
+          var comment = $("#commentimg").val();
+          $("#commentimg").val("");
+
+    $.ajax({
+           type: "POST",
+           url: "/user/comment",
+           data: { userid:userid, comment: comment, imgid: imgid}, // serializes the form's elements.
+           success: function(data)
+           {
+              var name = data.username;
+              var comment = data.comment;
+              var avatar = data.avatar;
+              var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in 
+              var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0,-1);
+              var day_date = localISOTime.substring(0,10).split("-").reverse().join('-');
+              var hour_date = localISOTime.substring(11,19);
+              var item_comment = "<div id='myitem'><div class='col-xs-2'> <img src='"+avatar+"' width='50' height='50'></img></div><div class='col-xs-10' style='color:#00cc00;font-size: 120%;'><div class=''><strong><a href='#'>"+name+": </a></strong>"+comment+"</div><p style='color:#000066;font-size: 75%;'>Đăng vào ngày "+day_date+" lúc "+hour_date+"</p></div><div style='clear:both;'></div></div>";
+               $(".row .col-xs-3").append(item_comment);
+           }
+         });
+
+          e.preventDefault(); // avoid to execute the actual submit of the form.
+        });    
+      }); 
+
+
+      $(document).ready(function(){
+         $('.myinput').on("click", function () {
+          data = $(this).find('input').val();
+                 // data = $(this).val();
+                   $("#mydiv").append(data);
+                  // $('#galleryModal').modal('show');
+            });
+          });  
+      // });
+      // capture event when closing madol.
+      $(document).ready(function(){
+        $("#galleryModal").on("hidden.bs.modal", function () {
+          location.reload();
+       });
+      });  
+      
+
+
+
+
+    </script>
+    </body>
+
