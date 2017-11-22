@@ -31,18 +31,18 @@ hr.light {
     border-color: #fff;
 }
 
-a {
+/* a {
     color: #9c27b0;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
-}
+} */
 
-a:hover,
+/* a:hover,
 a:focus {
     color: #9c27c1;
     outline: 0;
-}
+} */
 
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
@@ -120,16 +120,19 @@ footer {
 
 .navbar-header > .navbar-brand {
     font-family: 'Questrial','Helvetica Neue',Arial,sans-serif;
-    color: #9c27b0;
+    color: white;
     padding: 15px;
     -webkit-transition: padding .2s ease-in;
     -moz-transition: padding .2s ease-in;
     transition: padding .2s ease-in;
 }
 
+.navbar-header > a {
+    color: white;
+}
 .navbar-header > .navbar-brand:hover,
 .navbar-header > .navbar-brand:focus {
-    color: #8b27b0;
+    color: #D5D5D0;
 }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
@@ -320,7 +323,7 @@ footer {
 
 }
 
-.form-control {
+/* .form-control {
     display: block;
     width: 100%;
     height: 35px;
@@ -334,13 +337,13 @@ footer {
     border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
+} */
 
-.form-control:focus {
+/* .form-control:focus {
     color: #222;
     background-color: #ccc;
     box-shadow: none;
-}
+} */
 
 textarea {
     resize: none;
@@ -375,9 +378,11 @@ textarea {
     margin: 0 auto;
     max-width: 650px;
     overflow:hidden;
+    margin: 10px 10px;
 }
 
 .gallery-box .gallery-box-caption {
+    
     display: block;
     position: absolute;
     bottom: 0;
@@ -420,14 +425,14 @@ textarea {
     padding-left: 0;
 }
 
-.btn-default {
+ /* .btn-default {
     border-color: #fff;
     color: #222;
     background-color: #fff;
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
-}
+}  */
 
 .btn-default:hover,
 .btn-default:focus,
@@ -487,13 +492,7 @@ fieldset[disabled] .btn-default.active {
 .btn.btn-primary:hover {
     opacity: 0.7;
 }
-
-.btn {
-    border: 0;
-    border-radius: 290px;
-    font-family: 'Helvetica Neue',Arial,sans-serif;
-}
-
+ 
 .btn-xl {
     padding: 15px 30px;
     font-size: 20px;
@@ -519,4 +518,23 @@ img::selection {
 img::-moz-selection {
     color: #fff;
     background: 0 0;
+}
+
+.sign {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {            
+    color: #D5D5D0;
+    text-decoration: none;
+}
+
+#userid{
+    color: black;
 }
