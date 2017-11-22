@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,14 +6,11 @@
     <meta name="description" content="This is a free Bootstrap landing page theme created for BootstrapZero. Feature video background and one page design." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Codeply">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/animate.min.css" />
     <link rel="stylesheet" href="../css/ionicons.min.css" />
     <link rel="stylesheet" href="../css/styles.css" /> 
     <style type="text/css">
-      .navbar{
-            background-image: url("../images/1.png");
-        }
         .container{
             margin-top: 10%;
             font-size: 120%;
@@ -23,25 +19,41 @@
     </style>
   </head>
 <body>
-  <nav id="topNav" class="navbar navbar-default navbar-fixed-top">
+    <nav id="topNav" class="navbar navbar-inverse navbar-fixed-top" dir="display">
         <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand page-scroll" href="#first"><i class="ion-ios-analytics-outline"></i> Dấu Ấn UET</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+                <a class="navbar-brand" href="#first"><i class="ion-ios-analytics-outline"></i> Dấu Ấn UET</a>
             </div>
-            <div>
-                <ul class="nav navbar-nav navbar-right  ">
-                    <li role="presentation">
-                        <a  title="Trang chủ" href="/">Trang chủ</a>
-                    </li>
-                    <li role="presentation" class="active">
-                        <a  title="Trang cá nhân" href="#">Trang cá nhân</a>
-                    </li>
-                    <li role="presentation">
-                        <a   title="Đăng xuất" href="/user/logout">Đăng xuất</a>
-                    </li>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Trang chủ </a></li>
                 </ul>
+                <div class="navbar-form navbar-right">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                        </div>
+                    </div>
+                        <a class="sign" title="Trang cá nhân" href="#">Trang cá nhân</a>
+                        <a class="sign" title="Đăng xuất" href="/user/logout">Đăng xuất</a>
+                </div>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container-fluid -->
     </nav>
     <div style="clear:both;"></div>
 
